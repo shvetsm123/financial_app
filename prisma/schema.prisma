@@ -15,8 +15,10 @@ datasource db {
 
 model User {
   id       Int       @id @default(autoincrement())
-  email    String
+  email    String    @unique
   password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
   payments Payment[]
 }
 
@@ -25,6 +27,8 @@ model Payment {
   type        Type
   amount      Int
   description String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
   User        User?     @relation(fields: [userId], references: [id])
@@ -34,6 +38,8 @@ model Payment {
 model Category {
   id       Int       @id @default(autoincrement())
   type     Type
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
   payments Payment[]
 }
 
