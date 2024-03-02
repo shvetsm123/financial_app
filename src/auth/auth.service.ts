@@ -48,7 +48,7 @@ export class AuthService {
       id: foundUser.id,
       email: foundUser.email,
     });
-
+    console.log(foundUser.id);
     if (!token) {
       throw new ForbiddenException();
     }
