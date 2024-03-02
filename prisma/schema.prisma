@@ -17,6 +17,7 @@ model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   password String
+  balance Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   payments Payment[]
@@ -24,7 +25,7 @@ model User {
 
 model Payment {
   id          Int       @id @default(autoincrement())
-  type        Type
+  paymentType        PaymentType
   amount      Int
   description String
   createdAt DateTime @default(now())
@@ -37,13 +38,13 @@ model Payment {
 
 model Category {
   id       Int       @id @default(autoincrement())
-  type     Type
+  name     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   payments Payment[]
 }
 
-enum Type {
-  income
-  expense
+enum PaymentType {
+  INCOME
+  EXPENSE
 }
